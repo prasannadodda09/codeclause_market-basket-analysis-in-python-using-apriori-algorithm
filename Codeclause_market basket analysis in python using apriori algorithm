@@ -1,0 +1,20 @@
+import pandas as pd
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Load the transactional dataset (replace 'data.csv' with your dataset file)
+data = pd.read_csv('data.csv', header=None)
+
+# Preprocess the data if needed (e.g., converting data to binary format with one-hot encoding)
+
+# Apply the Apriori algorithm to find frequent itemsets
+frequent_itemsets = apriori(data, min_support=0.05, use_colnames=True)
+
+# Generate association rules from the frequent itemsets
+rules = association_rules(frequent_itemsets, metric='confidence', min_threshold=0.5)
+
+# Display the frequent itemsets and association rules
+print("Frequent Itemsets:")
+print(frequent_itemsets)
+
+print("\nAssociation Rules:")
+print(rules)
